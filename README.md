@@ -23,7 +23,7 @@ The result is output you can actually take into a refinement session, not a firs
 
 ---
 
-## The vision: a BA/PO "Spec Agent"
+## The vision"
 
 The long-term goal is a set of skills that chain together into a full specification pipeline:
 
