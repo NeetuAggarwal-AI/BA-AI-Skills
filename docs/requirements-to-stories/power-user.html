@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>*{box-sizing:border-box}html,body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>The Express Line</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&family=Barlow+Semi+Condensed:wght@500;600;700&display=swap">
+<style>
+  :root{
+    --bg:#e9edf0; --panel:#ffffff; --ink:#1f2530; --muted:#5c6572; --hair:#d6dbe1;
+    --track:#39414d;
+    --you:#bd6f10; --you-2:#f0e2cd;
+    --ai:#3a5bd0;  --ai-2:#dfe4fa;
+    --both:#0d8a78; --both-2:#d2ece6;
+    --conn:#7a45cf; --conn-2:#e8dffb;
+    --term:#df5638; --term-ink:#ffffff;
+    --opt:#8a94a2;
+    --shadow:0 1px 2px rgba(24,32,45,.05),0 10px 30px rgba(24,32,45,.08);
+  }
+  @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+    --bg:#13161b; --panel:#1b2028; --ink:#eaeef4; --muted:#98a2b0; --hair:#2a313c;
+    --track:#aab3c0;
+    --you:#e0a24a; --you-2:#33270f;
+    --ai:#8199f4;  --ai-2:#172140;
+    --both:#33c0a9; --both-2:#0e2a27;
+    --conn:#b79cf0; --conn-2:#20163a;
+    --term:#ef7c60; --term-ink:#151515;
+    --opt:#7c8593;
+    --shadow:0 1px 2px rgba(0,0,0,.4),0 12px 32px rgba(0,0,0,.4);
+  }}
+  :root[data-theme="dark"]{
+    --bg:#13161b; --panel:#1b2028; --ink:#eaeef4; --muted:#98a2b0; --hair:#2a313c;
+    --track:#aab3c0; --you:#e0a24a; --you-2:#33270f; --ai:#8199f4; --ai-2:#172140;
+    --both:#33c0a9; --both-2:#0e2a27; --conn:#b79cf0; --conn-2:#20163a;
+    --term:#ef7c60; --term-ink:#151515; --opt:#7c8593;
+    --shadow:0 1px 2px rgba(0,0,0,.4),0 12px 32px rgba(0,0,0,.4);
+  }
+
+  *{box-sizing:border-box}
+  body{background:var(--bg);color:var(--ink);font-family:"Barlow",system-ui,sans-serif;line-height:1.5}
+  .wrap{max-width:580px;margin:0 auto;padding-block:36px 48px;padding-inline:20px}
+
+  .eyebrow{font-family:"Barlow Semi Condensed",sans-serif;font-weight:700;font-size:.72rem;letter-spacing:.24em;text-transform:uppercase;color:var(--term)}
+  h1{font-family:"Barlow Semi Condensed",sans-serif;font-weight:700;font-size:clamp(2.1rem,7vw,3.1rem);line-height:.98;margin:.3rem 0 0;letter-spacing:-.01em;text-transform:uppercase}
+  .sub{color:var(--muted);font-size:1.02rem;margin:.55rem 0 0;max-width:46ch}
+
+  .key{display:flex;flex-wrap:wrap;gap:8px 15px;margin:20px 0 6px;padding:13px 15px;background:var(--panel);border:1px solid var(--hair);border-radius:12px;box-shadow:var(--shadow);font-size:.8rem}
+  .key .k{display:inline-flex;align-items:center;gap:7px;font-weight:500}
+  .kk{font-family:"Barlow Semi Condensed";font-weight:700;letter-spacing:.02em}
+  .sw{width:15px;height:15px;border-radius:50%;flex:none;background:var(--bg);border:3.5px solid var(--track)}
+  .sw.you{border-color:var(--you)} .sw.ai{border-color:var(--ai)} .sw.both{border-color:var(--both)}
+  .sw.ix{position:relative;border-color:var(--both)} .sw.ix::after{content:"";position:absolute;inset:4px;border-radius:50%;background:var(--both)}
+  .sw.opt{border-style:dashed;border-color:var(--opt)}
+  .sw.conn{width:22px;height:6px;border-radius:4px;background:var(--conn);border:none}
+  .sw.term{width:22px;height:11px;border-radius:6px;background:var(--term);border:none}
+
+  .mapwrap{margin-top:12px;background:var(--panel);border:1px solid var(--hair);border-radius:18px;box-shadow:var(--shadow);padding:6px 6px 2px}
+  svg{width:100%;height:auto;display:block}
+
+  .track{stroke:var(--track);stroke-width:8;stroke-linecap:round;fill:none}
+  .conn{stroke:var(--conn);stroke-width:5;fill:none;stroke-linecap:round;stroke-linejoin:round}
+  .rung{stroke:var(--conn);stroke-width:3.4;fill:none;stroke-dasharray:2.4 3.2;stroke-linecap:round}
+  .stn{fill:var(--bg);stroke-width:4}
+  .stn.you{stroke:var(--you)} .stn.ai{stroke:var(--ai)} .stn.both{stroke:var(--both)}
+  .ixdot.both{fill:var(--both)}
+  .stn.opt{stroke:var(--opt);stroke-width:3;stroke-dasharray:3.2 3.2}
+  .conn-node{fill:var(--conn)}
+  .term{fill:var(--term)}
+  .band-a{fill:var(--you-2);opacity:.5} .band-b{fill:var(--conn-2);opacity:.55} .band-c{fill:var(--both-2);opacity:.5}
+  text{font-family:"Barlow Semi Condensed",sans-serif}
+  .nm{fill:var(--ink);font-weight:600;font-size:14px;letter-spacing:.02em}
+  .cap{font-family:"Barlow",sans-serif;fill:var(--muted);font-weight:400;font-size:10.5px}
+  .cap .w-you{fill:var(--you);font-weight:600} .cap .w-ai{fill:var(--ai);font-weight:600}
+  .cap .w-both{fill:var(--both);font-weight:600} .cap .w-opt{fill:var(--opt);font-weight:600}
+  .termtxt{fill:var(--term-ink);font-weight:700;font-size:15px;letter-spacing:.05em;text-anchor:middle}
+  .zone{font-weight:700;font-size:11.5px;letter-spacing:.2em;text-anchor:end}
+  .zone.a{fill:var(--you)} .zone.b{fill:var(--conn)} .zone.c{fill:var(--both)}
+  .connlbl{fill:var(--conn);font-weight:700;font-size:10.5px;letter-spacing:.16em;text-anchor:middle}
+
+  .foot{margin-top:20px;display:flex;gap:10px;align-items:flex-start;color:var(--muted);font-size:.86rem}
+  .foot .tk{width:5px;align-self:stretch;background:var(--term);border-radius:4px;flex:none}
+  .foot b{color:var(--ink);font-family:"Barlow Semi Condensed";font-weight:700}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="eyebrow">requirements-to-stories · power user</div>
+  <h1>The Express&nbsp;Line</h1>
+  <p class="sub">Installed as a skill, wired to your tools — the full pipeline from a live source straight into Jira or ADO.</p>
+
+  <div class="key">
+    <span class="k"><span class="sw you"></span><span>a stop <b class="kk">you</b> make</span></span>
+    <span class="k"><span class="sw ai"></span><span>the <b class="kk">AI</b> runs</span></span>
+    <span class="k"><span class="sw ix"></span><span><b class="kk">review gate</b></span></span>
+    <span class="k"><span class="sw opt"></span><span><b class="kk">optional</b></span></span>
+    <span class="k"><span class="sw conn"></span><span>your <b class="kk">tools</b> line</span></span>
+    <span class="k"><span class="sw term"></span><span>start / end</span></span>
+  </div>
+
+  <div class="mapwrap">
+    <svg viewBox="0 0 400 1012" role="img" aria-label="A transit-style map of the power-user pipeline: install, optional configuration, and the run into Jira or ADO, with the connected tools shown as a second line.">
+      <!-- zone bands -->
+      <rect class="band-a" x="10" y="112" width="380" height="152" rx="16"/>
+      <rect class="band-b" x="10" y="280" width="380" height="234" rx="16"/>
+      <rect class="band-c" x="10" y="530" width="380" height="386" rx="16"/>
+      <!-- zone labels (top-right of each band) -->
+      <text class="zone a" x="378" y="132">SET UP</text>
+      <text class="zone b" x="378" y="300">CONFIGURE</text>
+      <text class="zone c" x="378" y="550">THE RUN</text>
+
+      <!-- connectors ("tools") line + rungs -->
+      <path class="conn" d="M84 462 H44 V868 H84"/>
+      <path class="rung" d="M44 556 H84"/>
+      <text class="connlbl" transform="rotate(-90 26 690)" x="26" y="690">YOUR TOOLS</text>
+
+      <!-- main track -->
+      <path class="track" d="M84 54 L84 958"/>
+
+      <!-- ORIGIN terminus -->
+      <circle class="term" cx="84" cy="54" r="11"/>
+      <rect class="term" x="104" y="38" width="196" height="32" rx="16"/>
+      <text class="termtxt" x="202" y="60">SOURCE</text>
+      <text class="cap" x="104" y="90">Confluence · a doc · paste</text>
+
+      <!-- SET UP -->
+      <circle class="stn you" cx="84" cy="150" r="8.5"/>
+      <text class="nm" x="108" y="147">CLONE THE REPO</text>
+      <text class="cap" x="108" y="164"><tspan class="w-you">YOU</tspan> · git clone the repo</text>
+
+      <circle class="stn you" cx="84" cy="228" r="8.5"/>
+      <text class="nm" x="108" y="225">DROP IN /skills</text>
+      <text class="cap" x="108" y="242"><tspan class="w-you">YOU</tspan> · then it triggers on intent</text>
+
+      <!-- CONFIGURE (optional) -->
+      <circle class="stn opt" cx="84" cy="306" r="8.5"/>
+      <text class="nm" x="108" y="303">HOUSE OVERLAY</text>
+      <text class="cap" x="108" y="320"><tspan class="w-opt">OPTIONAL</tspan> · your format on top</text>
+
+      <circle class="stn opt" cx="84" cy="384" r="8.5"/>
+      <text class="nm" x="108" y="381">PROJECT CONTEXT</text>
+      <text class="cap" x="108" y="398"><tspan class="w-opt">OPTIONAL</tspan> · fewer questions asked</text>
+
+      <circle class="stn opt" cx="84" cy="462" r="8.5"/>
+      <text class="nm" x="108" y="459">CONNECT MCP TOOLS</text>
+      <text class="cap" x="108" y="476"><tspan class="w-opt">OPTIONAL</tspan> · Jira · Confluence · ADO</text>
+
+      <!-- THE RUN -->
+      <circle class="stn both" cx="84" cy="556" r="11.5"/><circle class="ixdot both" cx="84" cy="556" r="3.6"/>
+      <text class="nm" x="113" y="553">ANALYSE + DECOMPOSE</text>
+      <text class="cap" x="113" y="570"><tspan class="w-ai">THE AI</tspan> reads source, proposes the map</text>
+
+      <circle class="stn ai" cx="84" cy="634" r="8.5"/>
+      <text class="nm" x="108" y="631">GENERATE + GATE</text>
+      <text class="cap" x="108" y="648"><tspan class="w-ai">THE AI</tspan> · Gherkin AC · gaps as TBC</text>
+
+      <circle class="stn ai" cx="84" cy="712" r="8.5"/>
+      <text class="nm" x="108" y="709">MAP DEPENDENCIES</text>
+      <text class="cap" x="108" y="726"><tspan class="w-ai">THE AI</tspan> · e.g. "Story B is blocked by Story A"</text>
+
+      <circle class="stn both" cx="84" cy="790" r="11.5"/><circle class="ixdot both" cx="84" cy="790" r="3.6"/>
+      <text class="nm" x="113" y="787">DRY-RUN → APPROVE</text>
+      <text class="cap" x="113" y="804"><tspan class="w-both">BOTH</tspan> · nothing is written yet</text>
+
+      <circle class="stn both" cx="84" cy="868" r="11.5"/><circle class="ixdot both" cx="84" cy="868" r="3.6"/>
+      <text class="nm" x="113" y="865">CREATE</text>
+      <text class="cap" x="113" y="882"><tspan class="w-both">BOTH</tspan> · idempotent · resumable</text>
+
+      <!-- DEST terminus -->
+      <circle class="term" cx="84" cy="958" r="11"/>
+      <rect class="term" x="104" y="942" width="196" height="32" rx="16"/>
+      <text class="termtxt" x="202" y="964">BACKLOG</text>
+      <text class="cap" x="104" y="994">in Jira / ADO — or a doc</text>
+    </svg>
+  </div>
+
+  <div class="foot">
+    <div class="tk"></div>
+    <div>The <b>tools line</b> only touches the pipeline where it reads the source and writes the tickets — and <b>nothing is created</b> until you approve the dry-run.</div>
+  </div>
+</div>
+</body>
+</html>

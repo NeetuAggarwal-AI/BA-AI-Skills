@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>BA-AI-Skills · The Network</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&family=Barlow+Semi+Condensed:wght@500;600;700&display=swap">
+<style>
+  :root{
+    --bg:#e9edf0;--panel:#ffffff;--ink:#1f2530;--muted:#5c6572;--faint:#8892a0;--hair:#d6dbe1;
+    --track:#39414d;--live:#0d8a78;--term:#df5638;--opt:#8a94a2;
+    --shadow:0 1px 2px rgba(24,32,45,.05),0 10px 30px rgba(24,32,45,.08);
+  }
+  @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+    --bg:#13161b;--panel:#1b2028;--ink:#eaeef4;--muted:#98a2b0;--faint:#6d7686;--hair:#2a313c;
+    --track:#aab3c0;--live:#33c0a9;--term:#ef7c60;--opt:#7c8593;
+    --shadow:0 1px 2px rgba(0,0,0,.4),0 12px 32px rgba(0,0,0,.4);
+  }}
+  :root[data-theme="dark"]{
+    --bg:#13161b;--panel:#1b2028;--ink:#eaeef4;--muted:#98a2b0;--faint:#6d7686;--hair:#2a313c;
+    --track:#aab3c0;--live:#33c0a9;--term:#ef7c60;--opt:#7c8593;
+    --shadow:0 1px 2px rgba(0,0,0,.4),0 12px 32px rgba(0,0,0,.4);
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0}
+  body{background:var(--bg);color:var(--ink);font-family:"Barlow",system-ui,sans-serif;line-height:1.5}
+  .wrap{max-width:660px;margin:0 auto;padding-block:56px 56px;padding-inline:20px}
+  .eyebrow{font-family:"Barlow Semi Condensed",sans-serif;font-weight:700;font-size:.72rem;letter-spacing:.24em;text-transform:uppercase;color:var(--term)}
+  h1{font-family:"Barlow Semi Condensed",sans-serif;font-weight:700;font-size:clamp(2.1rem,7vw,3rem);line-height:1;margin:.3rem 0 0;text-transform:uppercase;letter-spacing:-.01em}
+  .sub{color:var(--muted);font-size:1.05rem;margin:.6rem 0 0;max-width:52ch}
+
+  .lines{margin-top:28px;background:var(--panel);border:1px solid var(--hair);border-radius:16px;box-shadow:var(--shadow);overflow:hidden}
+  .row{display:flex;align-items:center;gap:14px;padding:15px 18px;border-bottom:1px solid var(--hair);text-decoration:none;color:inherit}
+  .row:last-child{border-bottom:none}
+  .row.live{transition:background .12s}
+  .row.live:hover{background:color-mix(in srgb,var(--live) 8%,transparent)}
+  .row.live:focus-visible{outline:2px solid var(--live);outline-offset:-2px}
+  .bullet{flex:none;width:16px;height:16px;border-radius:50%;background:var(--bg);border:4px solid var(--live)}
+  .row.soon .bullet{border-color:var(--opt);border-style:dashed;width:15px;height:15px;border-width:3px}
+  .meta{flex:1;min-width:0}
+  .nm{font-family:"Barlow Semi Condensed",sans-serif;font-weight:700;font-size:1.12rem;letter-spacing:.01em}
+  .row.soon .nm{color:var(--muted)}
+  .ds{color:var(--muted);font-size:.88rem}
+  .row.soon .ds{color:var(--faint)}
+  .status{flex:none;font-family:"Barlow Semi Condensed",sans-serif;font-weight:700;font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;padding:4px 9px;border-radius:20px}
+  .status.on{background:color-mix(in srgb,var(--live) 16%,transparent);color:var(--live)}
+  .status.off{background:color-mix(in srgb,var(--opt) 16%,transparent);color:var(--faint)}
+  .arrow{flex:none;color:var(--live);font-family:"Barlow Semi Condensed";font-weight:700}
+
+  .foot{margin-top:26px;color:var(--muted);font-size:.9rem;border-top:1px solid var(--hair);padding-top:18px}
+  .foot a{color:var(--term);font-weight:600;text-decoration:none}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="eyebrow">BA-AI-Skills</div>
+  <h1>The Skills Network</h1>
+  <p class="sub">A growing library of reusable AI skills for Business Analysis &amp; Product Ownership. Each skill is a line — open one to ride it.</p>
+
+  <div class="lines">
+    <a class="row live" href="requirements-to-stories/index.html">
+      <span class="bullet"></span>
+      <span class="meta"><span class="nm">requirements-to-stories</span><br><span class="ds">Any source → epics &amp; user stories with Gherkin AC → any destination.</span></span>
+      <span class="status on">Live</span>
+      <span class="arrow">→</span>
+    </a>
+
+    <div class="row soon"><span class="bullet"></span><span class="meta"><span class="nm">requirements-discovery</span><br><span class="ds">Elicitation questions, stakeholder &amp; scope framing.</span></span><span class="status off">Planned</span></div>
+    <div class="row soon"><span class="bullet"></span><span class="meta"><span class="nm">workshop-transcript-analysis</span><br><span class="ds">A raw transcript → structured findings, decisions, actions.</span></span><span class="status off">Planned</span></div>
+    <div class="row soon"><span class="bullet"></span><span class="meta"><span class="nm">requirement-gap-analysis</span><br><span class="ds">Compare against a target; surface what's missing or unclear.</span></span><span class="status off">Planned</span></div>
+    <div class="row soon"><span class="bullet"></span><span class="meta"><span class="nm">gherkin-ac-generator</span><br><span class="ds">Generate or expand Given/When/Then criteria for a story.</span></span><span class="status off">Planned</span></div>
+    <div class="row soon"><span class="bullet"></span><span class="meta"><span class="nm">api-integration-analysis</span><br><span class="ds">Draw out API, payload &amp; integration requirements.</span></span><span class="status off">Planned</span></div>
+    <div class="row soon"><span class="bullet"></span><span class="meta"><span class="nm">source-to-target-mapping</span><br><span class="ds">Build &amp; validate data/field mappings between systems.</span></span><span class="status off">Planned</span></div>
+    <div class="row soon"><span class="bullet"></span><span class="meta"><span class="nm">process-modelling</span><br><span class="ds">BPMN/UML-style process models from described flows.</span></span><span class="status off">Planned</span></div>
+    <div class="row soon"><span class="bullet"></span><span class="meta"><span class="nm">brd-specification-generation</span><br><span class="ds">Assemble a structured BRD/spec from gathered requirements.</span></span><span class="status off">Planned</span></div>
+    <div class="row soon"><span class="bullet"></span><span class="meta"><span class="nm">backlog-quality-review</span><br><span class="ds">Review a backlog against a quality gate &amp; Definition of Ready.</span></span><span class="status off">Planned</span></div>
+  </div>
+
+  <p class="foot">Source on <a href="https://github.com/NeetuAggarwal-AI/BA-AI-Skills">GitHub</a> · MIT licence · Built by Neetu Aggarwal.</p>
+</div>
+</body>
+</html>

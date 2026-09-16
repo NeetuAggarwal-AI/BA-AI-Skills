@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>*{box-sizing:border-box}html,body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>The Requirements Line</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&family=Barlow+Semi+Condensed:wght@500;600;700&display=swap">
+<style>
+  :root{
+    --bg:#e9edf0; --panel:#ffffff; --ink:#1f2530; --muted:#5c6572; --hair:#d6dbe1;
+    --track:#39414d;
+    --you:#bd6f10; --you-2:#f0e2cd;
+    --ai:#3a5bd0;  --ai-2:#dfe4fa;
+    --both:#0d8a78; --both-2:#d2ece6;
+    --term:#df5638; --term-ink:#ffffff;
+    --opt:#8a94a2;
+    --shadow:0 1px 2px rgba(24,32,45,.05),0 10px 30px rgba(24,32,45,.08);
+  }
+  @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+    --bg:#13161b; --panel:#1b2028; --ink:#eaeef4; --muted:#98a2b0; --hair:#2a313c;
+    --track:#aab3c0;
+    --you:#e0a24a; --you-2:#33270f;
+    --ai:#8199f4;  --ai-2:#172140;
+    --both:#33c0a9; --both-2:#0e2a27;
+    --term:#ef7c60; --term-ink:#151515;
+    --opt:#7c8593;
+    --shadow:0 1px 2px rgba(0,0,0,.4),0 12px 32px rgba(0,0,0,.4);
+  }}
+  :root[data-theme="dark"]{
+    --bg:#13161b; --panel:#1b2028; --ink:#eaeef4; --muted:#98a2b0; --hair:#2a313c;
+    --track:#aab3c0; --you:#e0a24a; --you-2:#33270f; --ai:#8199f4; --ai-2:#172140;
+    --both:#33c0a9; --both-2:#0e2a27; --term:#ef7c60; --term-ink:#151515; --opt:#7c8593;
+    --shadow:0 1px 2px rgba(0,0,0,.4),0 12px 32px rgba(0,0,0,.4);
+  }
+
+  *{box-sizing:border-box}
+  body{background:var(--bg);color:var(--ink);font-family:"Barlow",system-ui,sans-serif;line-height:1.5}
+  .wrap{max-width:560px;margin:0 auto;padding-block:36px 48px;padding-inline:20px}
+
+  .eyebrow{font-family:"Barlow Semi Condensed",sans-serif;font-weight:700;font-size:.72rem;letter-spacing:.24em;text-transform:uppercase;color:var(--term)}
+  h1{font-family:"Barlow Semi Condensed",sans-serif;font-weight:700;font-size:clamp(2.1rem,7vw,3.1rem);line-height:.98;margin:.3rem 0 0;letter-spacing:-.01em;text-transform:uppercase}
+  .sub{color:var(--muted);font-size:1.02rem;margin:.55rem 0 0;max-width:44ch}
+
+  /* line key */
+  .key{display:flex;flex-wrap:wrap;gap:8px 16px;margin:20px 0 6px;padding:13px 15px;background:var(--panel);border:1px solid var(--hair);border-radius:12px;box-shadow:var(--shadow);font-size:.82rem}
+  .key .k{display:inline-flex;align-items:center;gap:7px;font-weight:500}
+  .kk{font-family:"Barlow Semi Condensed";font-weight:700;letter-spacing:.02em}
+  .sw{width:15px;height:15px;border-radius:50%;flex:none;background:var(--bg);border:3.5px solid var(--track)}
+  .sw.you{border-color:var(--you)} .sw.ai{border-color:var(--ai)} .sw.both{border-color:var(--both)}
+  .sw.ix{position:relative;border-color:var(--both)} .sw.ix::after{content:"";position:absolute;inset:4px;border-radius:50%;background:var(--both)}
+  .sw.opt{border-style:dashed;border-color:var(--opt)}
+  .sw.term{width:22px;height:11px;border-radius:6px;background:var(--term);border:none}
+
+  .mapwrap{margin-top:12px;background:var(--panel);border:1px solid var(--hair);border-radius:18px;box-shadow:var(--shadow);padding:6px 6px 2px}
+  svg{width:100%;height:auto;display:block}
+
+  /* svg element styling — theme aware */
+  .track{stroke:var(--track);stroke-width:8;stroke-linecap:round;fill:none}
+  .stn{fill:var(--bg);stroke-width:4}
+  .stn.you{stroke:var(--you)} .stn.ai{stroke:var(--ai)} .stn.both{stroke:var(--both)}
+  .ixdot.both{fill:var(--both)}
+  .stn.opt{stroke:var(--opt);stroke-width:3;stroke-dasharray:3.2 3.2}
+  .term{fill:var(--term)}
+  .band-a{fill:var(--you-2);opacity:.5} .band-b{fill:var(--both-2);opacity:.5} .band-c{fill:var(--ai-2);opacity:.5}
+  text{font-family:"Barlow Semi Condensed",sans-serif}
+  .nm{fill:var(--ink);font-weight:600;font-size:14px;letter-spacing:.02em}
+  .cap{font-family:"Barlow",sans-serif;fill:var(--muted);font-weight:400;font-size:10.5px;letter-spacing:.01em}
+  .cap .w-you{fill:var(--you);font-weight:600} .cap .w-ai{fill:var(--ai);font-weight:600}
+  .cap .w-both{fill:var(--both);font-weight:600} .cap .w-opt{fill:var(--opt);font-weight:600}
+  .termtxt{fill:var(--term-ink);font-weight:700;font-size:15px;letter-spacing:.06em;text-anchor:middle}
+  .termcap{font-family:"Barlow",sans-serif;fill:var(--muted);font-size:10.5px;text-anchor:middle}
+  .zone{font-weight:700;font-size:12px;letter-spacing:.22em;text-anchor:middle}
+  .zone.a{fill:var(--you)} .zone.b{fill:var(--both)} .zone.c{fill:var(--ai)}
+
+  .foot{margin-top:20px;display:flex;gap:10px;align-items:flex-start;color:var(--muted);font-size:.86rem}
+  .foot .tk{width:5px;align-self:stretch;background:var(--term);border-radius:4px;flex:none}
+  .foot b{color:var(--ink);font-family:"Barlow Semi Condensed";font-weight:700}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="eyebrow">requirements-to-stories</div>
+  <h1>The Requirements&nbsp;Line</h1>
+  <p class="sub">From raw notes to a shipped backlog — one line, a handful of stops. No install, no ticket needed.</p>
+
+  <div class="key">
+    <span class="k"><span class="sw you"></span><span>a stop <b class="kk">you</b> make</span></span>
+    <span class="k"><span class="sw ai"></span><span>the <b class="kk">AI</b> runs</span></span>
+    <span class="k"><span class="sw ix"></span><span>interchange = <b class="kk">review gate</b></span></span>
+    <span class="k"><span class="sw opt"></span><span><b class="kk">optional</b> stop</span></span>
+    <span class="k"><span class="sw term"></span><span>start / end</span></span>
+  </div>
+
+  <div class="mapwrap">
+    <svg viewBox="0 0 372 1030" role="img" aria-label="A transit-style map of the requirements-to-stories journey, from Raw Requirements to Shipped Backlog.">
+      <!-- zone bands -->
+      <rect class="band-a" x="10" y="112" width="352" height="316" rx="16"/>
+      <rect class="band-b" x="10" y="446" width="352" height="220" rx="16"/>
+      <rect class="band-c" x="10" y="696" width="352" height="220" rx="16"/>
+      <!-- zone labels (rotated in gutter) -->
+      <text class="zone a" transform="rotate(-90 26 270)" x="26" y="270">SET UP</text>
+      <text class="zone b" transform="rotate(-90 26 556)" x="26" y="556">GUIDED RUN</text>
+      <text class="zone c" transform="rotate(-90 26 806)" x="26" y="806">DELIVERY</text>
+
+      <!-- the track -->
+      <path class="track" d="M60 54 L60 972"/>
+
+      <!-- ORIGIN terminus -->
+      <circle class="term" cx="60" cy="54" r="11"/>
+      <rect class="term" x="80" y="38" width="214" height="32" rx="16"/>
+      <text class="termtxt" x="187" y="60">RAW REQUIREMENTS</text>
+      <text class="cap" x="80" y="90">your notes, a doc, a transcript</text>
+
+      <!-- N1 -->
+      <circle class="stn you" cx="60" cy="150" r="8.5"/>
+      <text class="nm" x="84" y="147">COPY THE SKILL</text>
+      <text class="cap" x="84" y="164"><tspan class="w-you">YOU</tspan> · open SKILL.md, copy it</text>
+      <!-- N2 -->
+      <circle class="stn you" cx="60" cy="228" r="8.5"/>
+      <text class="nm" x="84" y="225">PASTE INTO YOUR AI</text>
+      <text class="cap" x="84" y="242"><tspan class="w-you">YOU</tspan> · paste it as the chat's rules</text>
+      <!-- N3 -->
+      <circle class="stn you" cx="60" cy="306" r="8.5"/>
+      <text class="nm" x="84" y="303">ADD REQUIREMENTS</text>
+      <text class="cap" x="84" y="320"><tspan class="w-you">YOU</tspan> · paste or attach your doc</text>
+      <!-- N-opt -->
+      <circle class="stn opt" cx="60" cy="384" r="8.5"/>
+      <text class="nm" x="84" y="381">CONNECT YOUR TOOLS</text>
+      <text class="cap" x="84" y="398"><tspan class="w-opt">OPTIONAL</tspan> · Jira · Confluence, to go live</text>
+
+      <!-- N4 interchange -->
+      <circle class="stn both" cx="60" cy="484" r="11.5"/><circle class="ixdot both" cx="60" cy="484" r="3.6"/>
+      <text class="nm" x="89" y="481">ANALYSIS CHECK</text>
+      <text class="cap" x="89" y="498"><tspan class="w-ai">THE AI</tspan> flags the gaps · <tspan class="w-you">you</tspan> answer</text>
+      <!-- N5 interchange -->
+      <circle class="stn both" cx="60" cy="562" r="11.5"/><circle class="ixdot both" cx="60" cy="562" r="3.6"/>
+      <text class="nm" x="89" y="559">CONFIRM STRUCTURE</text>
+      <text class="cap" x="89" y="576"><tspan class="w-both">BOTH</tspan> · approve the epics &amp; stories</text>
+      <!-- N6 interchange -->
+      <circle class="stn both" cx="60" cy="640" r="11.5"/><circle class="ixdot both" cx="60" cy="640" r="3.6"/>
+      <text class="nm" x="89" y="637">FILL THE GAPS</text>
+      <text class="cap" x="89" y="654"><tspan class="w-both">BOTH</tspan> · answer its quick questions</text>
+
+      <!-- N7 -->
+      <circle class="stn ai" cx="60" cy="734" r="8.5"/>
+      <text class="nm" x="84" y="731">STORIES WRITTEN</text>
+      <text class="cap" x="84" y="748"><tspan class="w-ai">THE AI</tspan> · with Given / When / Then</text>
+      <!-- N8 interchange -->
+      <circle class="stn both" cx="60" cy="812" r="11.5"/><circle class="ixdot both" cx="60" cy="812" r="3.6"/>
+      <text class="nm" x="89" y="809">REFINE</text>
+      <text class="cap" x="89" y="826"><tspan class="w-both">BOTH</tspan> · "split this", "add a case"</text>
+      <!-- N9 -->
+      <circle class="stn you" cx="60" cy="890" r="8.5"/>
+      <text class="nm" x="84" y="887">DOWNLOAD</text>
+      <text class="cap" x="84" y="904"><tspan class="w-you">YOU</tspan> · "as a Word document"</text>
+
+      <!-- DEST terminus -->
+      <circle class="term" cx="60" cy="972" r="11"/>
+      <rect class="term" x="80" y="956" width="214" height="32" rx="16"/>
+      <text class="termtxt" x="187" y="978">SHIPPED BACKLOG</text>
+      <text class="cap" x="80" y="1008">epics · stories · AC · open questions</text>
+    </svg>
+  </div>
+
+  <div class="foot">
+    <div class="tk"></div>
+    <div>Every interchange is a <b>review gate</b> — the line never runs past you. And it never invents a requirement: an unclear stop becomes an <b>open question</b>, not a guess.</div>
+  </div>
+</div>
+</body>
+</html>

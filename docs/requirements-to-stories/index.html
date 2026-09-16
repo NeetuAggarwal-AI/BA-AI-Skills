@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>requirements-to-stories · Guides</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&family=Barlow+Semi+Condensed:wght@500;600;700&display=swap">
+<style>
+  :root{
+    --bg:#e9edf0;--panel:#ffffff;--ink:#1f2530;--muted:#5c6572;--hair:#d6dbe1;
+    --track:#39414d;--you:#bd6f10;--ai:#3a5bd0;--both:#0d8a78;--conn:#7a45cf;
+    --term:#df5638;--shadow:0 1px 2px rgba(24,32,45,.05),0 10px 30px rgba(24,32,45,.08);
+  }
+  @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+    --bg:#13161b;--panel:#1b2028;--ink:#eaeef4;--muted:#98a2b0;--hair:#2a313c;
+    --track:#aab3c0;--you:#e0a24a;--ai:#8199f4;--both:#33c0a9;--conn:#b79cf0;
+    --term:#ef7c60;--shadow:0 1px 2px rgba(0,0,0,.4),0 12px 32px rgba(0,0,0,.4);
+  }}
+  :root[data-theme="dark"]{
+    --bg:#13161b;--panel:#1b2028;--ink:#eaeef4;--muted:#98a2b0;--hair:#2a313c;
+    --track:#aab3c0;--you:#e0a24a;--ai:#8199f4;--both:#33c0a9;--conn:#b79cf0;
+    --term:#ef7c60;--shadow:0 1px 2px rgba(0,0,0,.4),0 12px 32px rgba(0,0,0,.4);
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0}
+  body{background:var(--bg);color:var(--ink);font-family:"Barlow",system-ui,sans-serif;line-height:1.5}
+  .wrap{max-width:620px;margin:0 auto;padding-block:60px 56px;padding-inline:20px}
+  .eyebrow{font-family:"Barlow Semi Condensed",sans-serif;font-weight:700;font-size:.72rem;letter-spacing:.24em;text-transform:uppercase;color:var(--term)}
+  h1{font-family:"Barlow Semi Condensed",sans-serif;font-weight:700;font-size:clamp(2.1rem,7vw,3rem);line-height:1;margin:.3rem 0 0;text-transform:uppercase;letter-spacing:-.01em}
+  .sub{color:var(--muted);font-size:1.05rem;margin:.6rem 0 0;max-width:48ch}
+  .cards{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:30px}
+  @media (max-width:560px){.cards{grid-template-columns:1fr}}
+  a.card{position:relative;display:flex;flex-direction:column;gap:9px;text-decoration:none;color:inherit;background:var(--panel);border:1px solid var(--hair);border-radius:16px;padding:22px 20px 20px;box-shadow:var(--shadow);overflow:hidden;transition:transform .12s,box-shadow .12s}
+  a.card::before{content:"";position:absolute;left:0;top:0;bottom:0;width:6px}
+  a.card.beg::before{background:var(--you)}
+  a.card.pow::before{background:var(--conn)}
+  a.card:hover{transform:translateY(-2px);box-shadow:0 12px 30px rgba(24,32,45,.14)}
+  a.card:focus-visible{outline:2px solid var(--term);outline-offset:2px}
+  .roundel{display:flex;align-items:center;gap:8px}
+  .dotline{display:flex;align-items:center}
+  .dotline i{display:block;width:11px;height:11px;border-radius:50%;background:var(--bg);border:3px solid var(--track)}
+  .dotline .l{width:16px;height:3px;background:var(--track)}
+  .beg .dotline i{border-color:var(--you)} .pow .dotline i{border-color:var(--conn)}
+  .beg .dotline .l{background:var(--you)} .pow .dotline .l{background:var(--conn)}
+  .tag{font-family:"Barlow Semi Condensed",sans-serif;font-weight:700;font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+  a.card h2{font-family:"Barlow Semi Condensed",sans-serif;font-weight:700;margin:0;font-size:1.5rem;text-transform:uppercase;letter-spacing:-.01em}
+  a.card p{margin:0;color:var(--muted);font-size:.92rem}
+  .go{margin-top:3px;font-family:"Barlow Semi Condensed",sans-serif;font-weight:700;font-size:.85rem;letter-spacing:.03em;color:var(--term);display:inline-flex;align-items:center;gap:6px}
+  .foot{margin-top:32px;color:var(--muted);font-size:.9rem;border-top:1px solid var(--hair);padding-top:18px}
+  .foot a{color:var(--term);font-weight:600;text-decoration:none}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="eyebrow">requirements-to-stories</div>
+  <h1>How to use this skill</h1>
+  <p class="sub">Turn requirements into user stories with acceptance criteria. Pick the line that fits you.</p>
+
+  <div class="cards">
+    <a class="card beg" href="beginner.html">
+      <div class="roundel"><span class="dotline"><i></i><span class="l"></span></span> <span class="tag">New to this · 🚇</span></div>
+      <h2>The Requirements Line</h2>
+      <p>No AI experience, nothing to install. Copy, paste, chat — and get your stories.</p>
+      <span class="go">Ride the line →</span>
+    </a>
+
+    <a class="card pow" href="power-user.html">
+      <div class="roundel"><span class="dotline"><i></i><span class="l"></span></span> <span class="tag">Power user · 🚄</span></div>
+      <h2>The Express Line</h2>
+      <p>Install as a skill, wire in your tools, run the full pipeline into Jira or ADO.</p>
+      <span class="go">Take the express →</span>
+    </a>
+  </div>
+
+  <p class="foot">Part of the <a href="https://github.com/NeetuAggarwal-AI/BA-AI-Skills">BA-AI-Skills</a> repository · MIT licence.</p>
+</div>
+</body>
+</html>
