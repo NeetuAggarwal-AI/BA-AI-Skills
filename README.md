@@ -1,4 +1,5 @@
 # BA-AI-Skills
+📖 **How to use →** https://neetuaggarwal-ai.github.io/BA-AI-Skills/
 
 **Reusable AI Agent Skills for Business Analysis & Product Ownership** — for BAs, POs, and any developer, tester, architect or engineer wearing the BA/PO hat.
 
