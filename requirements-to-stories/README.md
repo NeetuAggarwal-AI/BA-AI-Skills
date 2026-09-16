@@ -29,7 +29,8 @@ requirements-to-stories/
 │   ├── quality-gate.md               # quality gate + Definition of Ready
 │   ├── story-type-questions.md       # question sets per story type
 │   ├── source-adapters.md            # how each source is read (incl. reading an existing backlog)
-│   └── output-adapters.md            # destinations; dry-run→approve→create; dependency linking
+│   ├── output-adapters.md            # destinations; dry-run→approve→create; dependency linking
+│   └── tracker-and-run.md            # resolve-before-ask; hierarchy discovery; idempotent, resumable creation
 ├── assets/
 │   ├── user-story-template.md        # blank fill-in template
 │   └── gherkin-cheatsheet.md         # quick Gherkin reference

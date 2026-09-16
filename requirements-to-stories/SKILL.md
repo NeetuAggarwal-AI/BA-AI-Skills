@@ -105,7 +105,7 @@ If a run would violate any of these to look more "complete," stop and ask instea
 
 ## Workflow (the steps to follow every time)
 
-**1. Ingest the source (and, in enhance mode, the existing backlog).** Detect the source type and extract clean text and tables. If the source can't be reached (no connected tool, broken link), ask the person to paste it or upload the file rather than guessing. **In enhance mode, also read the current backlog** from the tracker (existing epics, stories and their keys) so new work can be slotted in without duplication. See `references/source-adapters.md`.
+**1. Ingest the source (and, in enhance mode, the existing backlog).** First **resolve before you ask** — check what the person already gave, any settings already saved for this work, and the surrounding project/workspace context; then ask once, only for what's genuinely missing (see `references/tracker-and-run.md` §1). Detect the source type and extract clean text and tables. If the source can't be reached (no connected tool, broken link), ask the person to paste it or upload the file rather than guessing. **In enhance mode, also read the current backlog** from the tracker (existing epics, stories and their keys) so new work can be slotted in without duplication. See `references/source-adapters.md`.
 
 **2. Analyse before decomposing.** Read the whole thing first. Produce a short **analysis pass** *before* any stories:
    - Actors/roles involved
@@ -118,19 +118,20 @@ If a run would violate any of these to look more "complete," stop and ask instea
 
    Show this to the person. This is the single highest-value part of the skill — it's the BA thinking, made visible.
 
-**3. Propose the decomposition and confirm it.** Suggest an **Epic → Feature → Story** breakdown mapped to the source (which section becomes which epic/story). **Confirm this mapping with the person before generating** — do not assume the source's headings map 1:1 to epics. Adjust to their feedback.
+**3. Propose the decomposition and confirm it.** If the destination is a tracker, first **check what hierarchy tiers it actually supports** before promising an Epic → Feature → Story tree — many projects have only two tiers; offer a choice rather than silently flattening (see `references/tracker-and-run.md` §2). Then suggest the breakdown mapped to the source (which section becomes which epic/story). **Confirm this mapping with the person before generating** — do not assume the source's headings map 1:1 to epics. Adjust to their feedback.
 
 **4. Ask the story-type questions.** Work out what *kind* of story each item is (data entry, workflow/status, integration/API, notification, auth/access, permission/consent, background/async, reporting, install/migration, UI/interaction — they combine) and ask the specific questions that type always needs. Prompt for real values; don't invent them. See `references/story-type-questions.md`.
 
 **5. Detail the epics, then generate the stories + acceptance criteria.**
    - **Epics** — detail each epic to `references/epic-standard.md`: epic statement, background, **measurable business value (baseline → target)**, scope in/out, epic-level business rules, source-of-truth data, dependencies, child stories, and traceability. Value at the epic level is mandatory and must be measurable — if the number isn't known, it's an open question, not an invented figure.
    - **Stories** — use `references/user-story-standard.md`: *As a [role], I want to [capability], so that [value]*; a complete story (Background, story sentence, Business Rules, AC, Out of Scope, References); **Gherkin** AC by default for interactive/UI stories and **rule-based** AC for backend/rule-heavy stories, covering happy path **and** known edge/failure cases; checked against **INVEST**.
+   - **Where a required section has no source material yet** (e.g. no designs exist), keep the heading and mark it `TBC — [what's pending]` rather than deleting it or inventing content. An item that fails the quality gate still goes in the pack, marked **NOT READY** with the specific gap named — never hidden.
 
 **6. Run the quality gate.** Before delivering, run each epic/story through `references/quality-gate.md` (structure complete, INVEST + estimable, value & measurable success, NFRs considered where relevant, edge/failure coverage, traceability, explicit scope, internal consistency). Report each as pass/gap; close gaps or capture them as open questions — don't hide them.
 
 **7. Map dependencies, then deliver.**
    - **Dependencies** — check each new story/epic against the rest of the new set **and** (in enhance mode) against the existing backlog. Where one genuinely depends on another, capture it as a proposed link with a one-line reason ("US-114 *is blocked by* US-090 because it consumes the token US-090 issues"). **Propose these in the dry-run — never create dependency links silently.**
-   - **Deliver** — Word doc by default. For Jira/ADO, always **dry-run → approve → create**, and only on approval create the tickets *and* the approved dependency links (Jira issue links such as *blocks / is blocked by / relates to*; ADO Predecessor/Successor/Related). See `references/output-adapters.md`.
+   - **Deliver** — Word doc by default. For Jira/ADO, always **dry-run → approve → create**, and only on approval create the tickets *and* the approved dependency links (Jira issue links such as *blocks / is blocked by / relates to*; ADO Predecessor/Successor/Related). Create **parents before children, incrementally, tagging what you create so re-runs don't duplicate**, and on a partial failure report exactly what was and wasn't created (see `references/tracker-and-run.md` §3–§4). See `references/output-adapters.md`.
 
 ---
 
@@ -153,6 +154,7 @@ This keeps the public skill clean while letting each team make it their own. See
 - `references/story-type-questions.md` — the question sets per story type.
 - `references/source-adapters.md` — how each source is ingested, and how to add a new source.
 - `references/output-adapters.md` — how each destination works, the dry-run→approve→create flow, and how to add a new destination.
+- `references/tracker-and-run.md` — resolving inputs before asking, discovering the tracker's hierarchy, and idempotent, resumable creation.
 - `assets/user-story-template.md` — blank fill-in story template.
 - `assets/gherkin-cheatsheet.md` — quick Gherkin reference.
 - `examples/` — worked examples on a fictional domain: input brief → analysis → stories (`01`, `02`), and a fully-detailed epic (`03`).

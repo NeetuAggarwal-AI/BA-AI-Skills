@@ -34,3 +34,8 @@ The gate makes you *ask the question*; it never hardcodes the *answer*. Targets 
 - [ ] Supporting context attached (mockups, architecture notes, business rules)
 
 If a story fails several of these, **don't just flag it — help close the gaps**: ask the clarifying questions, draft the missing AC, and note what's still open.
+
+## Marking gaps, never hiding them
+
+- Where a required section has no source material yet, keep the heading and mark it `TBC — [what's pending]` — don't delete the heading and don't invent content to fill it.
+- An item that doesn't pass the gate still goes in the output, marked **NOT READY** with the specific gap named. A hidden gap is worse than a visible one.
